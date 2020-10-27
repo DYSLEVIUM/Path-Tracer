@@ -4,7 +4,7 @@
 
 Here we are using ppm format to output the image.
 
-<div align="center">![alt text](assets/fig-1.01-ppm.jpg)</div>
+![alt text](assets/fig-1.01-ppm.jpg)
 
 ### 1.1 Creating the image
 
