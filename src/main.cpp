@@ -23,11 +23,14 @@ double hit_sphere(const point3& center, double radius, const ray& r) {
     return (-half_b - sqrt(discriminant)) / a;
 }
 
-color ray_color(const ray& r, const hittable& world) {
+color ray_color(const ray& r, const hittable& world, int depth) {
     hit_record rec;
 
+    if (depth <= 0) return color(0, 0, 0);
+
     if (world.hit(r, 0, infinity, rec)) {
-        return 0.5 * (rec.normal + color(1, 1, 1));
+        point3 target = rec.p + rec.normal + random_unit_vector();
+        return 0.5 * ray_color(ray(rec.p, target - rec.p), world, depth - 1);
     }
 
     vec3 unit_direction = unit_vector(r.direction());  //  -1.0<=y<=1
@@ -45,9 +48,10 @@ int32_t main() {
     //  image
 
     double aspect_ratio = 16.0 / 9.0;
-    int imgWidth = 500;
+    int imgWidth = 400;
     Image<int> img(imgWidth, static_cast<int>(imgWidth / aspect_ratio));
-    const int sample_per_pixel = 10;
+    const int sample_per_pixel = 25;
+    const int max_depth = 50;
 
     //  world
     hittable_list world;
@@ -71,7 +75,7 @@ int32_t main() {
                 auto v = (j + random_double()) / (img.getHeight() - 1);
 
                 ray r = cam.get_ray(u, v);
-                pixel_color += ray_color(r, world);
+                pixel_color += ray_color(r, world, max_depth);
             }
 
             write_color(std::cout, pixel_color, sample_per_pixel);

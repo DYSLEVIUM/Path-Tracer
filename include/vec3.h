@@ -46,6 +46,14 @@ class vec3 {
     double length() const {
         return std::sqrt(length_squared());
     }
+
+    inline static vec3 random() {
+        return vec3(random_double(), random_double(), random_double());
+    }
+
+    inline static vec3 random(double min, double max) {
+        return vec3(random_double(min, max), random_double(min, max), random_double(min, max));
+    }
 };
 
 //  type aliases for vec3
@@ -95,4 +103,18 @@ inline vec3 unit_vector(vec3 v) {
     return v / v.length();
 }
 
+inline vec3 random_in_unit_sphere() {
+    while (1) {
+        auto p = vec3::random(-1, 1);
+        if (p.length_squared() >= 1) continue;
+        return p;
+    }
+}
+
+inline vec3 random_unit_vector() {
+    auto a = random_double(0, 2 * pi);
+    auto z = random_double(-1, 1);
+    auto r = sqrt(1 - z * z);
+    return vec3(r * cos(a), r * sin(a), z);
+}
 #endif
