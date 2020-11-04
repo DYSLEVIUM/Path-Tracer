@@ -12,6 +12,7 @@ void write_color(std::ostream& out, color pixel_color, int samplex_per_pixel) {
 
     //  divide the color by the number of samples
     auto scale = 1.0 / samplex_per_pixel;
+
     r = sqrt(scale * r);
     g = sqrt(scale * g);
     b = sqrt(scale * b);
