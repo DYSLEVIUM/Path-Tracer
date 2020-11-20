@@ -1,4 +1,4 @@
-# Path Tracer Renderer
+# Path Tracer In One Weekend
 
 ## 1. Output an Image
 
