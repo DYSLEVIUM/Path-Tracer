@@ -8,7 +8,9 @@ Here we are using ppm format to output the image.
 
 ### 1.1 Creating the image
 
-`$ a.exe > img.ppm` // this is not used in the code as it would be tedious, the code automatically makes the image file
+`$ a.exe > img.ppm` 
+
+__**Note:**__ This is not used in the code as it would be tedious; the code automatically makes the image file
 
 ## 2. Rays, Camera and Background
 
