@@ -100,8 +100,8 @@ int32_t main() {
     double aspect_ratio = 16.0 / 9.0;
     int imgWidth = 500;
     Image<int> img(imgWidth, static_cast<int>(imgWidth / aspect_ratio));
-    const int sample_per_pixel = 500;
-    const int max_depth = 50;
+    const int sample_per_pixel = 100;
+    const int max_depth = 10;
 
     //  world
     auto world = random_scene();
